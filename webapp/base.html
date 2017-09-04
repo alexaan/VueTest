@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1 v-once>{{title}}</h1>
+    <h2>{{title}}</h2>
+    <p>{{sayHello()}}<a v-bind:href="link">google</a></p>
+    <p>{{name}} is {{age}} years old</p>
+    <p>{{age * 3}}</p>
+    <p>go random {{getRandom()}}</p>
+    <hr>
+    <p v-html="finishedLink"></p>
+    <div>
+        <img v-bind:src="image" style="width:100px;height:100px;">
+    </div>
+    <div>
+        <input type="text" v-bind:value="name" v-on:input="changeName">
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'Hello mee!!',
+            link: 'http://google.com',
+            finishedLink: '<a href="http://google.com">google2</a>',
+            name: 'Alexander',
+            age: 28,
+            image: 'https://i.pinimg.com/736x/ee/5c/27/ee5c2740b94d5243eaddf631fecb5227--super-meme-funny-mems.jpg'
+        },
+        methods: {
+            changeTitle: function(event) {
+                this.title = event.target.value;
+            },
+            changeName: function(event) {
+                this.name = event.target.value;
+            },
+            sayHello: function() {
+                this.title = 'oh hi';
+                return this.title;
+            },
+            getRandom: function() {
+                return (Math.random() * 100).toFixed(2)
+            }
+        }
+    });
+</script>
+</body>
+</html>
